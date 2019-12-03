@@ -19,6 +19,7 @@
             class="toggle" 
             type="checkbox" 
             [checked]="todo.isDone"
+            (click)="toggleTodo(todo)"
           >
           <label (dblclick)="todo.editing = true">{{todo.title}}</label>
           <button class="destroy" (click)="destroyTodo(todo)"></button>
