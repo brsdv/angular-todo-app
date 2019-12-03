@@ -2,18 +2,31 @@
 
   <header class="header">
     <h1>Todo</h1>
-    <input class="new-todo" placeholder="What needs to be done?" autofocus>
+    <input 
+      class="new-todo"
+      placeholder="What needs to be done?"
+      [(ngModel)]="newTodo"
+      (keyup.enter)="addTodo()"
+      autofocus
+    >
   </header>
 
   <section class="main">
     <ul class="todo-list">
       <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone}">
         <div class="view">
-          <input class="toggle" type="checkbox" [checked]="todo.isDone">
+          <input 
+            class="toggle" 
+            type="checkbox" 
+            [checked]="todo.isDone"
+          >
           <label>{{todo.title}}</label>
           <button class="destroy"></button>
         </div>
-        <input class="edit" value="{{todo.title}}">
+        <input 
+          class="edit" 
+          value="{{todo.title}}"
+        >
       </li>
     </ul>
   </section>

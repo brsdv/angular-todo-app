@@ -10,6 +10,7 @@ import { TodoService } from './todo.service';
 export class TodoComponent implements OnInit {
   public todos;
   public activeTasks;
+  public newTodo;
 
   constructor(private todoService: TodoService) { }
 
@@ -17,11 +18,21 @@ export class TodoComponent implements OnInit {
     this.getTodos();
   }
 
-  getTodos(){
+  getTodos() {
     return this.todoService.get().then(todos => {
       this.todos = todos;
       this.activeTasks = this.todos.filter(todo => !todo.isDone).length;
     });
+  }
+
+  addTodo() {
+    this.todoService.add({ title: this.newTodo, isDone: false })
+      .then(() => {
+       return this.getTodos();
+      })
+      .then(() => {
+        this.newTodo = ''; // clear input form value
+      });
   }
 
 }
